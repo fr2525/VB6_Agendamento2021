@@ -1,0 +1,5 @@
+05/12/2020 11:21:09         frmCliente    MontaCampos   O item não pode ser encontrado na coleção correspondente ao nome ou ao ordinal solicitado.         3265 
+05/12/2020 11:52:44         frmCliente    MontaCampos   O item não pode ser encontrado na coleção correspondente ao nome ou ao ordinal solicitado.         3265 
+05/12/2020 11:53:50         frmCliente    MontaCampos   O item não pode ser encontrado na coleção correspondente ao nome ou ao ordinal solicitado.         3265 
+08/12/2020 10:56:07         frmCliente    SQL_Registro  Object required              424 
+08/12/2020 13:06:27         frmCliente    SQL_Registro  Object required              424 

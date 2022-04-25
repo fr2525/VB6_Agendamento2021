@@ -1,0 +1,80 @@
+Mensagem_Final_Cupom = ReadIniFile(App.Path & "\SisAdven.ini", "Men_Promoc", "", "")
+Mensagem_Final_Cupom = UCase(Mid(Mensagem_Final_Cupom, 1, 492))
+
+WriteIniFile App.Path & "\SisAdven.ini", "Men_Promoc", "", txtMensagem.Text
+
+    If chkDescPedOrc.Value = 1 Then
+        flagDescPedOrc = True
+        WriteIniFile "c:\SisAdven.ini", "Desconto", "Chk", "0"
+        Exit Sub
+    Else
+        flagDescPedOrc = False
+        WriteIniFile "c:\SisAdven.ini", "Desconto", "Chk", "1"
+        Exit Sub
+    End If
+------------------------------------------------------------------------------------------
+	
+E o SISADVEN.INI
+
+
+[Backup]
+=24/02/2016 08:54:33
+[Cursor]
+Chk=0
+[Qtde]
+Chk=1
+[EstoqueNeg]
+Chk=0
+[AltVenda]
+Chk=1
+[Desconto]
+Chk=0
+[Ret_AbrePortaSerial]
+=1
+[Imp_Fisc_Sel]
+Uso=1
+[Pesquisa]
+Chk=1
+[Men_Promoc]
+=OBRIGADO PELA PREFERÊNCIA E VOLTE SEMPRE
+
+[Orcamentos]
+Chk=1
+[Altera_Estoque]
+Chk=1
+[Desc_prod_cupom]
+Chk=1
+[TIPO_EMPRESA]
+=PETSHOP
+
+
+--------------------------------------------------------------------------------------------------
+Function ReadIniFile(ByVal sIniFileName As String, ByVal sSection As String, ByVal sItem As String, ByVal sDefault As String) As String
+   Dim iRetAmount As Integer   'the amount of characters returned
+   Dim sTemp As String
+
+   sTemp = String$(400, 0)   'fill with nulls
+   iRetAmount = GetPrivateProfileString(sSection, sItem, sDefault, sTemp, 400, sIniFileName)
+   sTemp = Left$(sTemp, iRetAmount)
+   ReadIniFile = sTemp
+End Function
+Public Sub CorPerdeFoco(obj As Object)
+
+obj.ForeColor = &H800000
+
+End Sub
+
+Function WriteIniFile(ByVal sIniFileName As String, ByVal sSection As String, ByVal sItem As String, ByVal sText As String) As Boolean
+   Dim i As Integer
+   On Error GoTo sWriteIniFileError
+
+   i = WritePrivateProfileString(sSection, sItem, sText, sIniFileName)
+   WriteIniFile = True
+
+   Exit Function
+sWriteIniFileError:
+    WriteIniFile = False
+End Function
+
+
+	

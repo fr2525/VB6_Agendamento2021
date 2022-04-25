@@ -1,0 +1,14 @@
+Private Sub p_MouseDown(Button As Integer, Shift As Integer, x As Single, y As Single)
+    If Button = 2 Then 'botao direito
+        p.Col = p.MouseCol
+        p.Row = p.MouseRow
+        p.SetFocus
+
+        PopupMenu xxx, , p.Left + x, p.Top + y
+    End If
+End Sub[/code]
+aqui, p é o nome do flexgrid e xxx o nome do menu.
+
+se você criar o menu xxx (clique com o botao direito no formulario na tela de design e selecione Menu Editor...),
+     com as subopcoes q você quer, e deixa-lo como Visible False, você pode usar esse codigo,
+ 	 e no clique dos submenus, chamar as rotinas q você quiser (Alterar, Excluir, etc.)

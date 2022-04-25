@@ -1,0 +1,28 @@
+Dim cnnLocal as ADODB.Connection
+Set cnnLocal = New ADODB.Connection
+cnnLocal.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Jet OLEDB:Database Password=SENHA;" & "Data Source=C:\Dados.mdb;" & "Persist Security Info=False"	
+cnnLocal.Open
+
+DadosCBOtabela Cbo_Nome, "Clientes", "Nome", "ID"
+
+Public Function DadosCBOtabela(Cb As ComboBox, Tabela As String, Campo As String, CodId as integer) As Boolean
+	Dim Seleção as ADODB.Recordset	
+	StrTemp = Cb.Text	
+	Cb.Clear	
+	Set Seleção = New ADODB.Recordset		
+	Seleção.Open "SELECT " & CodID & "," & Campo & " FROM " & Tabela & " ORDER BY " & Campo, BDdados, adOpenDynamic, adLockReadOnly
+	If Seleção.EOF = True Then
+		DadosCBOtabela = False
+		Seleção.Close
+		Exit Function
+	End If	
+	Do While Not Seleção.EOF
+	    cb.AddItem IIf(IsNull(Seleção(Campo)), "", Seleção(Campo))
+		cb.ItemData(cb.NewIndex) = Selecao(codID)
+		Seleção.MoveNext	
+	Loop	
+	DadosCBOtabela = True
+	Seleção.Close
+	Cb.Text = StrTemp
+	StrTemp = ""
+End Function

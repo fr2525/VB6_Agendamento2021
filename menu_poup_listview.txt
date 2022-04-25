@@ -1,0 +1,49 @@
+'general
+Dim Item_Selecionado As Integer
+Dim ITEM_CHECKED As Boolean
+Dim lvListItems_Itens As MSComctlLib.ListItem
+
+Private Sub LIST_REC_PAGA_ItemClick(ByVal Item As MSComctlLib.ListItem)
+    
+    If Item.Index = 0 Then Exit Sub
+    Item_Selecionado = LIST_REC_PAGA.SelectedItem.ListSubItems(13)
+
+    If lvListItems_Itens Is Nothing Then
+        Exit Sub
+    End If
+
+    If Item.Index = 0 Then Exit Sub
+    ItemSelecionado = Item.Index
+    
+
+End Sub
+
+Private Sub LIST_REC_PAGA_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+    Set lvListItems_Itens = LIST_REC_PAGA.HitTest(X, Y)
+
+    'Check if a record was selected
+    If lvListItems_Itens Is Nothing Then
+        If LIST_REC_PAGA.ListItems.Count > 0 Then
+            LIST_REC_PAGA.SelectedItem.Selected = False
+        End If
+        'se não estiver item selecionado desabilita menus
+        If Button = 2 Then
+            'mnu_Remove_Item.Enabled = False
+            mnu_Receber.Enabled = False
+            mnu_Limpar.Enabled = True
+            PopupMenu mnu_Options, , , , mnu_Limpar
+        End If
+        Exit Sub
+    Else
+        'Habilita menus
+        lvListItems_Itens.Selected = True
+        If Button = 2 Then
+            Selecao_Registro = lvListItems_Itens.Key
+            'mnu_novo.Enabled = False
+            'mnu_Pesquisar.Enabled = False
+            mnu_Receber.Enabled = True
+            PopupMenu mnu_Options, , , , mnu_Receber
+        End If
+    End If
+End Sub
+
